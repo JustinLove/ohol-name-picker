@@ -11,6 +11,11 @@ import (
 
 const numberOfNames int = 10
 
+type Names struct {
+	firsts [numberOfNames]string `json:"firsts"`
+	lasts [numberOfNames]string `json:"lasts"`
+}
+
 var firstNames []string
 var lastNames []string
 
@@ -21,16 +26,15 @@ func init() {
 }
 
 func main() {
-	var firsts [numberOfNames]string
-	var lasts [numberOfNames]string
+	var response Names
 
 	for i := 0; i < numberOfNames; i++ {
-		firsts[i] = firstNames[rand.Intn(len(firstNames))]
-		lasts[i] = lastNames[rand.Intn(len(lastNames))]
+		response.firsts[i] = firstNames[rand.Intn(len(firstNames))]
+		response.lasts[i] = lastNames[rand.Intn(len(lastNames))]
 	}
 
 	for i := 0; i < numberOfNames; i++ {
-		fmt.Printf("%s %s\n", firsts[i], lasts[i])
+		fmt.Printf("%s %s\n", response.firsts[i], response.lasts[i])
 	}
 }
 
