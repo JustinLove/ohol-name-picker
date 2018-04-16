@@ -1,0 +1,10 @@
+- Frontend, downloading lists
+  - Elm
+  - Vanilla JS
+- Hybrid, Making request for names
+  - AWS Lambda
+  - or below
+- Backend, returning dynamic HTML
+  - Node
+  - Ruby
+  - PHP
