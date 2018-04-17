@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/aws/aws-lambda-go/lambda"
 	"io/ioutil"
 	"log"
 	"math/rand"
@@ -13,7 +14,7 @@ const numberOfNames int = 10
 
 type Names struct {
 	firsts [numberOfNames]string `json:"firsts"`
-	lasts [numberOfNames]string `json:"lasts"`
+	lasts  [numberOfNames]string `json:"lasts"`
 }
 
 var firstNames []string
@@ -25,7 +26,7 @@ func init() {
 	lastNames = loadNames("lastNames.txt")
 }
 
-func main() {
+func LambdaHandler() (Names, error) {
 	var response Names
 
 	for i := 0; i < numberOfNames; i++ {
@@ -33,12 +34,20 @@ func main() {
 		response.lasts[i] = lastNames[rand.Intn(len(lastNames))]
 	}
 
+	return response, nil
+}
+
+func main() {
+	lambda.Start(LambdaHandler)
+	return
+	response, _ := LambdaHandler()
+
 	for i := 0; i < numberOfNames; i++ {
 		fmt.Printf("%s %s\n", response.firsts[i], response.lasts[i])
 	}
 }
 
-func loadNames(filename string) ([]string) {
+func loadNames(filename string) []string {
 	content, err := ioutil.ReadFile(filename)
 	if err != nil {
 		log.Fatal(err)
