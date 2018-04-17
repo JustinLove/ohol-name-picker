@@ -1,1 +1,4 @@
 *.exe
+*.zip
+ohol-name-picker
+.vagrant
