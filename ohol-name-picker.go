@@ -13,8 +13,8 @@ import (
 const numberOfNames int = 10
 
 type Names struct {
-	firsts [numberOfNames]string `json:"firsts"`
-	lasts  [numberOfNames]string `json:"lasts"`
+	Firsts [numberOfNames]string `json:"firsts"`
+	Lasts  [numberOfNames]string `json:"lasts"`
 }
 
 var firstNames []string
@@ -30,8 +30,8 @@ func LambdaHandler() (Names, error) {
 	var response Names
 
 	for i := 0; i < numberOfNames; i++ {
-		response.firsts[i] = firstNames[rand.Intn(len(firstNames))]
-		response.lasts[i] = lastNames[rand.Intn(len(lastNames))]
+		response.Firsts[i] = firstNames[rand.Intn(len(firstNames))]
+		response.Lasts[i] = lastNames[rand.Intn(len(lastNames))]
 	}
 
 	return response, nil
@@ -43,7 +43,7 @@ func main() {
 	response, _ := LambdaHandler()
 
 	for i := 0; i < numberOfNames; i++ {
-		fmt.Printf("%s %s\n", response.firsts[i], response.lasts[i])
+		fmt.Printf("%s %s\n", response.Firsts[i], response.Lasts[i])
 	}
 }
 
