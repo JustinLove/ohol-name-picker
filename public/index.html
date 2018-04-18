@@ -30,9 +30,16 @@
       req.send(null)
     }
     update()
+
+
+    window.onload = function() {
+      var button = document.getElementById('refresh')
+      button.addEventListener('click', update)
+    }
     </script>
   </head>
   <body>
+    <button id="refresh">Refresh</button>
     <ul id="name-list">
     </ul>
   </body>
