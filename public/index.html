@@ -5,11 +5,25 @@
     <script>
     "use strict"
 
+    var setNames = function(names) {
+      var list = document.getElementById('name-list')
+      while (list.firstChild) {
+        list.removeChild(list.firstChild)
+      }
+      var count = names.firsts.length
+      for (var i = 0;i < count;i++) {
+        var item = document.createElement('li')
+        item.textContent = names.firsts[i] + " " + names.lasts[i]
+        list.appendChild(item)
+      }
+    }
+
     var update = function() {
       var req = new XMLHttpRequest()
       req.onreadystatechange = function() {
         if (req.readyState == 4 && req.status == 200) {
-          console.log(req)
+          var names = JSON.parse(req.responseText)
+          setNames(names)
         }
       }
       req.open("GET", "https://fjd47lc026.execute-api.us-east-1.amazonaws.com/testing/ohol-name-picker", true)
