@@ -1,2 +1,2 @@
-- make response
+- better identify first vs last
 - add credits and author notes
