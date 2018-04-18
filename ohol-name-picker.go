@@ -21,16 +21,20 @@ type Names struct {
 
 type Response struct {
 	//IsBase64Encoded bool              `json:"isBase64Encoded"`
-	StatusCode int `json:"statusCode"`
-	//Headers         map[string]string `json:"headers"`
-	Body string `json:"body"`
+	StatusCode int               `json:"statusCode"`
+	Headers    map[string]string `json:"headers"`
+	Body       string            `json:"body"`
+}
+
+var headers map[string]string = map[string]string{
+	"Access-Control-Allow-Origin": "*",
 }
 
 var errorResponse Response = Response{
 	//IsBase64Encoded: false,
 	StatusCode: 500,
-	//Headers:         make(map[string]string),
-	Body: "",
+	Headers:    headers,
+	Body:       "",
 }
 
 var firstNames []string
@@ -64,8 +68,8 @@ func LambdaHandler() (Response, error) {
 	response := Response{
 		//IsBase64Encoded: true,
 		StatusCode: 200,
-		//Headers:         make(map[string]string),
-		Body: string(jsonString),
+		Headers:    headers,
+		Body:       string(jsonString),
 	}
 
 	return response, nil

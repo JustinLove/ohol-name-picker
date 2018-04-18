@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>One Hour One Life Name Picker</title>
+    <script>
+    "use strict"
+
+    var update = function() {
+      var req = new XMLHttpRequest()
+      req.onreadystatechange = function() {
+        if (req.readyState == 4 && req.status == 200) {
+          console.log(req)
+        }
+      }
+      req.open("GET", "https://fjd47lc026.execute-api.us-east-1.amazonaws.com/testing/ohol-name-picker", true)
+      req.send(null)
+    }
+    update()
+    </script>
+  </head>
+  <body>
+    <ul id="name-list">
+    </ul>
+  </body>
+</html>
