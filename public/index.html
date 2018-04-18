@@ -19,6 +19,14 @@ body {
   list-style-type: none;
   white-space: nowrap;
 }
+
+.first {
+  color: #040;
+}
+
+.last {
+  color: #006;
+}
     </style>
     <script>
     "use strict"
@@ -31,7 +39,10 @@ body {
       var count = names.firsts.length
       for (var i = 0;i < count;i++) {
         var item = document.createElement('li')
-        item.textContent = names.firsts[i] + " " + names.lasts[i]
+        item.innerHTML =
+          '<span class="first">' + names.firsts[i] + '</span>' +
+          " " +
+          '<span class="last">' + names.lasts[i] + '</span>'
         list.appendChild(item)
       }
     }
